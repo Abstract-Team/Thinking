@@ -1,0 +1,24 @@
+{
+  "required": true,
+  "package": "top.alittlebot.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "GrindstoneScreenHandlerMixin",
+    "ItemMixin",
+    "ItemsMixin",
+    "entity.ItemEntityMixin",
+    "entity.LivingEntityMixin",
+    "entity.MobEntityAccessor",
+    "entity.MobEntityMixin",
+    "entity.PersistentProjectileEntityAccessor",
+    "entity.PigEntityMixin",
+    "entity.PistonBlockEntityMixin",
+    "entity.PlayerEntityMixin",
+    "entity.TridentEntityAccessor",
+    "entity.TridentEntityMixin",
+    "entity.VillagerEntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

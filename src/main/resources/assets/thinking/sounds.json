@@ -1,0 +1,14 @@
+{
+  "banana": {
+    "subtitle": "sound.thinking.banana",
+    "sounds": [
+      "thinking:banana"
+    ]
+  },
+  "pipe": {
+    "subtitle": "sound.thinking.pipe",
+    "sounds": [
+      "thinking:pipe"
+    ]
+  }
+}

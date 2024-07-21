@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "cookingtime": 200,
+  "ingredient": {
+    "item": "minecraft:bucket"
+  },
+  "result": {
+    "id": "thinking:drinkable_bucket"
+  }
+}

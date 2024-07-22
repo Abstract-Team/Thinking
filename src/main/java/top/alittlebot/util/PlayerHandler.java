@@ -6,6 +6,7 @@ import net.minecraft.entity.effect.StatusEffects;
 
 public class PlayerHandler {
     public static void register() {
+        // 水是剧毒的
         ServerTickEvents.END_SERVER_TICK.register(server -> {
             server.getPlayerManager().getPlayerList().forEach(player -> {
                 if (player.isTouchingWater()) {

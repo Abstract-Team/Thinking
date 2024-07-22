@@ -3,9 +3,9 @@
   "package": "top.alittlebot.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "AnimalMateGoalMixin",
     "GrindstoneScreenHandlerMixin",
     "ItemMixin",
-    "ItemsMixin",
     "entity.ItemEntityMixin",
     "entity.LivingEntityMixin",
     "entity.MobEntityAccessor",

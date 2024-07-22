@@ -14,6 +14,7 @@ public class CustomGrindstoneSlot extends Slot {
 
     @Override
     public boolean canInsert(ItemStack stack) {
+        // 可为附魔金苹果祛魔
         return stack.isDamageable() || EnchantmentHelper.hasEnchantments(stack) || stack.isOf(Items.ENCHANTED_GOLDEN_APPLE);
     }
 }

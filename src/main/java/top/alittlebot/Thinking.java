@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import top.alittlebot.enchantment.*;
+import top.alittlebot.entity.effect.StatusEffects;
 import top.alittlebot.item.ItemGroups;
 import top.alittlebot.item.Items;
 
@@ -19,6 +20,7 @@ public class Thinking implements ModInitializer {
         Enchantments.registerEnchantments();
         ItemGroups.registerItemGroups();
         SoundEvents.registerSounds();
+        StatusEffects.registerStatusEffects();
 
         ServerLifecycleEvents.SERVER_STARTING.register(ServerManager::setServerInstance);
 

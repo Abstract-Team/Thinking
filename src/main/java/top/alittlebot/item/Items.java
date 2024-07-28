@@ -43,6 +43,7 @@ public class Items {
                             .build()
                     )
     );
+    public static final Item POTION_THROWING_GLOVE = new PotionThrowingGloveItem(new Item.Settings());
 
     public static void registerItems() {
         registerItem("drinkable_bucket", DRINKABLE_BUCKET);
@@ -52,6 +53,7 @@ public class Items {
         registerItem("brain", BRAIN);
         registerItem("pasta", PASTA);
         registerItem("lava_netherite_boots", LAVA_NETHERITE_BOOTS);
+        registerItem("potion_throwing_glove", POTION_THROWING_GLOVE);
     }
 
     private static void registerItem(String name, Item item) {

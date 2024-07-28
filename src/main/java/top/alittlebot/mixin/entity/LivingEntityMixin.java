@@ -2,10 +2,9 @@ package top.alittlebot.mixin.entity;
 
 import net.minecraft.block.*;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.EntityPose;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.*;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
@@ -20,10 +19,15 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import top.alittlebot.enchantment.Enchantments;
+import top.alittlebot.entity.effect.StatusEffects;
 import top.alittlebot.item.Items;
 
 @Mixin(LivingEntity.class)
-public abstract class LivingEntityMixin {
+public abstract class LivingEntityMixin extends Entity implements Attackable {
+
+    public LivingEntityMixin(EntityType<?> type, World world) {
+        super(type, world);
+    }
 
     @Inject(method = "tick", at = @At("HEAD"))
     public void tick(CallbackInfo ci) {
@@ -101,5 +105,14 @@ public abstract class LivingEntityMixin {
     @Unique
     private boolean isExplosionDamage(DamageSource source) {
         return source.getName().contains("explosion");
+    }
+
+    @Inject(method = "travel", at = @At("HEAD"), cancellable = true)
+    private void onTravel(CallbackInfo ci) {
+        LivingEntity entity = (LivingEntity) (Object) this;
+        StatusEffectInstance effectInstance = entity.getStatusEffect(StatusEffects.THINKING);
+        if (effectInstance != null) {
+            ci.cancel();
+        }
     }
 }

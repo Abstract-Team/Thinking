@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WW",
+    "RR"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:rabbit_hide"
+    },
+    "R": {
+      "item": "minecraft:string"
+    }
+  },
+  "result": {
+    "id": "thinking:potion_throwing_glove"
+  }
+}

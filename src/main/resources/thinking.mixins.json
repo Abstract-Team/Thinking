@@ -6,6 +6,7 @@
     "AnimalMateGoalMixin",
     "GrindstoneScreenHandlerMixin",
     "ItemMixin",
+    "PlayerChatMixin",
     "entity.ItemEntityMixin",
     "entity.LivingEntityMixin",
     "entity.MobEntityAccessor",

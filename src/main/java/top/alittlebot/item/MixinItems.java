@@ -4,6 +4,7 @@ import net.minecraft.component.type.FoodComponents;
 import net.minecraft.item.Item;
 import net.minecraft.util.Rarity;
 
+// 由于某些原因没用上 :-(
 public class MixinItems {
     public final static Item TOTEM_OF_UNDYING = new Item(
             new Item.Settings().rarity(Rarity.UNCOMMON).maxCount(64).food(FoodComponents.ENCHANTED_GOLDEN_APPLE)

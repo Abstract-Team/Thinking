@@ -22,6 +22,7 @@ public class ItemGroups {
                 entries.add(Items.DRINKABLE_WATER_BUCKET);
                 entries.add(Items.DRINKABLE_LAVA_BUCKET);
                 entries.add(Items.LAVA_NETHERITE_BOOTS);
+                entries.add(Items.POTION_THROWING_GLOVE);
             })
             .build();
 

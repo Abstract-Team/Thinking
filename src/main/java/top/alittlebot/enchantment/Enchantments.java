@@ -152,6 +152,18 @@ public class Enchantments {
             )
     );
 
+    public static final DandruffEnchantment DANDRUFF_ENCHANTMENT = new DandruffEnchantment(
+            Enchantment.properties(
+                    ItemTags.HEAD_ARMOR_ENCHANTABLE,
+                    10,
+                    1,
+                    Enchantment.leveledCost(1, 11),
+                    Enchantment.leveledCost(21, 11),
+                    1,
+                    EquipmentSlot.HEAD
+            )
+    );
+
 
     public static void registerEnchantments() {
         registerEnchantment("explosive", EXPLOSIVE_ENCHANTMENT);
@@ -165,6 +177,7 @@ public class Enchantments {
         registerEnchantment("social_phobia", SOCIAL_PHOBIA_ENCHANTMENT);
         // registerEnchantment("hot_door", HOT_DOOR_ENCHANTMENT);
         registerEnchantment("babbling", BABBLING_ENCHANTMENT);
+        registerEnchantment("dandruff", DANDRUFF_ENCHANTMENT);
 
         ExplosiveEnchantmentHandler.register();
 
@@ -179,6 +192,7 @@ public class Enchantments {
         registerEnchantmentRecipes(SOCIAL_PHOBIA_ENCHANTMENT, 1);
         // registerEnchantmentRecipes(HOT_DOOR_ENCHANTMENT, 1);
         registerEnchantmentRecipes(BABBLING_ENCHANTMENT, 1);
+        registerEnchantmentRecipes(DANDRUFF_ENCHANTMENT, 1);
     }
 
     private static void registerEnchantment(String name, Enchantment enchantment) {

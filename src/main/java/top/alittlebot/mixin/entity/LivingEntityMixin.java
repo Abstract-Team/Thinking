@@ -33,9 +33,8 @@ public abstract class LivingEntityMixin extends Entity implements Attackable {
     public void tick(CallbackInfo ci) {
         LivingEntity entity = (LivingEntity) (Object) this;
         World world = entity.getWorld();
-
+        ItemStack helmet = entity.getEquippedStack(EquipmentSlot.HEAD);
         if (!world.isClient) {
-            ItemStack helmet = entity.getEquippedStack(EquipmentSlot.HEAD);
             if (helmet.hasEnchantments() && (EnchantmentHelper.getLevel(Enchantments.SOCIAL_PHOBIA_ENCHANTMENT, helmet) > 0)) {
                 for (LivingEntity otherEntity : world.getEntitiesByClass(LivingEntity.class, entity.getBoundingBox().expand(10.0), e -> e != entity)) {
                     if (otherEntity.canSee(entity)) {
@@ -55,18 +54,20 @@ public abstract class LivingEntityMixin extends Entity implements Attackable {
 
     @Inject(method = "tickMovement", at = @At("HEAD"))
     public void onTickMovement(CallbackInfo info) {
-        LivingEntity user = (LivingEntity) (Object) this;
-        ItemStack leggings = user.getEquippedStack(EquipmentSlot.LEGS);
-        ItemStack feet = user.getEquippedStack(EquipmentSlot.FEET);
+        LivingEntity entity = (LivingEntity) (Object) this;
+        World world = entity.getWorld();
+        ItemStack helmet = entity.getEquippedStack(EquipmentSlot.HEAD);
+        ItemStack leggings = entity.getEquippedStack(EquipmentSlot.LEGS);
+        ItemStack feet = entity.getEquippedStack(EquipmentSlot.FEET);
         if (leggings.hasEnchantments() && (EnchantmentHelper.getLevel(Enchantments.CRAWL_ENCHANTMENT, leggings) > 0)) {
-            if (!user.isSwimming() && !user.isSpectator() && !user.isSleeping()) {
-                user.setPose(EntityPose.SWIMMING);
-                user.setSwimming(true);
+            if (!entity.isSwimming() && !entity.isSpectator() && !entity.isSleeping()) {
+                entity.setPose(EntityPose.SWIMMING);
+                entity.setSwimming(true);
             }
         }
         if (feet.hasEnchantments() && (EnchantmentHelper.getLevel(Enchantments.FIRE_WALKING_ENCHANTMENT, feet) > 0)) {
-            user.setOnFireFor(1);
-            user.getWorld().addParticle(ParticleTypes.FLAME, user.getX(), user.getY(), user.getZ(), 0, 0, 0);
+            entity.setOnFireFor(1);
+            entity.getWorld().addParticle(ParticleTypes.FLAME, entity.getX(), entity.getY(), entity.getZ(), 0, 0, 0);
         }
     }
 
@@ -110,9 +111,17 @@ public abstract class LivingEntityMixin extends Entity implements Attackable {
     @Inject(method = "travel", at = @At("HEAD"), cancellable = true)
     private void onTravel(CallbackInfo ci) {
         LivingEntity entity = (LivingEntity) (Object) this;
+        World world = entity.getWorld();
+        ItemStack helmet = entity.getEquippedStack(EquipmentSlot.HEAD);
         StatusEffectInstance effectInstance = entity.getStatusEffect(StatusEffects.THINKING);
         if (effectInstance != null) {
             ci.cancel();
+        }
+        if (world.isClient) {
+            if (helmet.hasEnchantments() && (EnchantmentHelper.getLevel(Enchantments.DANDRUFF_ENCHANTMENT, helmet) > 0)) {
+                Vec3d pos = entity.getPos();
+                world.addParticle(ParticleTypes.WHITE_ASH, pos.x, pos.y + entity.getStandingEyeHeight() + 0.2, pos.z, 0.0, 0.0, 0.0);
+            }
         }
     }
 }

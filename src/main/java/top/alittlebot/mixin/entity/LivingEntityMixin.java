@@ -9,6 +9,7 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -21,9 +22,15 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import top.alittlebot.enchantment.Enchantments;
 import top.alittlebot.entity.effect.StatusEffects;
 import top.alittlebot.item.Items;
+import top.alittlebot.util.GetSounds;
+
+import java.util.List;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity implements Attackable {
+
+    @Unique
+    private static final List<SoundEvent> Sounds = GetSounds.getAllSoundEvents();
 
     public LivingEntityMixin(EntityType<?> type, World world) {
         super(type, world);
@@ -68,6 +75,10 @@ public abstract class LivingEntityMixin extends Entity implements Attackable {
         if (feet.hasEnchantments() && (EnchantmentHelper.getLevel(Enchantments.FIRE_WALKING_ENCHANTMENT, feet) > 0)) {
             entity.setOnFireFor(1);
             entity.getWorld().addParticle(ParticleTypes.FLAME, entity.getX(), entity.getY(), entity.getZ(), 0, 0, 0);
+        }
+        if (helmet.hasEnchantments() && (EnchantmentHelper.getLevel(Enchantments.NOISY_ENCHANTMENT, helmet) > 0)) {
+            SoundEvent randomSound = Sounds.get(random.nextInt(Sounds.size()));
+            entity.getWorld().playSound(entity.getX(), entity.getY(), entity.getZ(), randomSound, entity.getSoundCategory(), 5.0F, 1.0F, false);
         }
     }
 

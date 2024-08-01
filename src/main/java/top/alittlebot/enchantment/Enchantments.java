@@ -164,6 +164,18 @@ public class Enchantments {
             )
     );
 
+    public static final NoisyEnchantment NOISY_ENCHANTMENT = new NoisyEnchantment(
+            Enchantment.properties(
+                    ItemTags.HEAD_ARMOR_ENCHANTABLE,
+                    10,
+                    1,
+                    Enchantment.leveledCost(1, 11),
+                    Enchantment.leveledCost(21, 11),
+                    1,
+                    EquipmentSlot.HEAD
+            )
+    );
+
 
     public static void registerEnchantments() {
         registerEnchantment("explosive", EXPLOSIVE_ENCHANTMENT);
@@ -178,6 +190,7 @@ public class Enchantments {
         // registerEnchantment("hot_door", HOT_DOOR_ENCHANTMENT);
         registerEnchantment("babbling", BABBLING_ENCHANTMENT);
         registerEnchantment("dandruff", DANDRUFF_ENCHANTMENT);
+        registerEnchantment("noisy", NOISY_ENCHANTMENT);
 
         ExplosiveEnchantmentHandler.register();
 
@@ -193,6 +206,7 @@ public class Enchantments {
         // registerEnchantmentRecipes(HOT_DOOR_ENCHANTMENT, 1);
         registerEnchantmentRecipes(BABBLING_ENCHANTMENT, 1);
         registerEnchantmentRecipes(DANDRUFF_ENCHANTMENT, 1);
+        registerEnchantmentRecipes(NOISY_ENCHANTMENT, 1);
     }
 
     private static void registerEnchantment(String name, Enchantment enchantment) {
